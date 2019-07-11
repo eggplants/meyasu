@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+   <head>
+      <title>simple OPAC</title>
+      <meta charset="utf-8">
+      <meta name="description" content="シンプルな検索システム.">
+      <meta name="keywords" content="シンプル,使いやすい,簡単,筑波大学">
+      <meta name="author" content="春名航亨">
+      <meta name="generator" content="atom">
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@egpl0" />
+      <meta property="og:url" content="" />
+      <meta property="og:title" content="simple OPAC" />
+      <meta property="og:description" content="シンプルな検索システム." />
+      <meta property="og:image" content="./icon.png" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@egpl0" />
+      <link rel="shortcut icon" href="img/icon.png" >
+      <link rel="stylesheet" type="text/css" href="../css/search_box.css">
+   </head>
+   <body>
+      <h1>Search Data</h1>
+      <form action="../cgi/data_table.cgi" method="GET">
+         <div class="center"><input class="search" type="text" value="" name="search" placeholder="Please enter any keyword(s)"></div><br>
+         <div class="center"><input type="text" name="ps" list="case-numbers1" placeholder="1ページの表示件数:入力/選択" style="font-size:20px;"></div>
+         <datalist id="case-numbers1">
+            <option value="5">けっこう少ない</option>
+            <option value="10">少ない</option>
+            <option value="30">ちょっと少ない</option>
+            <option value="50">ちょうどいい</option>
+            <option value="100">ちょっと多い</option>
+            <option value="200">多い</option>
+         </datalist>
+         <br>
+         <input type="hidden" name="p" value="0">
+         <div class="center"><input class="btn-square" type="submit" value="検索する"></div>
+         <br>
+      </form>
+      <details>
+         <summary>詳細フィールドから検索</summary>
+         <form action="../cgi/data_table.cgi" method="GET">
+            <ul class="columns1">
+               <li>
+                  <table>
+                     <tbody>
+                        <tr>
+                           <td>Q date:</td>
+                           <td><input type="text" name="q_date" value="" placeholder="posted date of question"></td>
+                        </tr>
+                        <tr>
+                           <td>Q content:</td>
+                           <td><input type="text" name="q_content" value="" placeholder="content of question"></td>
+                        </tr>
+                        <tr>
+                           <td>Q belong:</td>
+                           <td><input type="text" name="q_belonging" value="" placeholder="belonging of questioner"></td>
+                        </tr>
+                        <tr>
+                           <td>A date:</td>
+                           <td><input type="text" name="a_date" value="" placeholder="posted date of answer"></td>
+                        </tr>
+                        <tr>
+                           <td>A content:</td>
+                           <td><input type="text" name="a_content" value="" placeholder="content of answer"></td>
+                        </tr>
+                        <tr>
+                           <td>A belong:</td>
+                           <td><input type="text" name="a_belonging" value="" placeholder="belonging of answerer"></td>
+                        </tr>
+                        <tr>
+                           <td>A tag:</td>
+                           <td><input type="text" name="c_tag" value="" placeholder="categorized tag of question"></td>
+                        </tr>
+			<input type="radio" name="andor" value="and" checked>AND</input> 
+			<input type="radio" name="andor" value="or">OR</input>
+                      </tbody>
+                  </table>
+                  <br><input type="hidden" name="p" value="0">
+                  <div class="center">
+                     <input type="text" name="ps" value="" list="case-numbers2" placeholder="1ページの表示件数:入力/選択" style="font-size:20px;">
+                     <datalist id="case-numbers2">
+                        <option value="5">けっこう少ない</option>
+                        <option value="10">少ない</option>
+                        <option value="30">ちょっと少ない</option>
+                        <option value="50">ちょうどいい</option>
+                        <option value="100">ちょっと多い</option>
+                        <option value="200">多い</option>
+                     </datalist>
+                  </div>
+                  <div class="center"><br>
+                     <input class="btn-square" type="submit" value="検索する">
+                  </div>
+            </ul>
+         </form>
+      </details>
+      <br>
+      <hr>
+      <br>
+      <div class="center-h">使用例</div>
+      <ul class="columns2">
+         <li><label>・AND検索するとき </label></li>
+         <li><label>ㅤ- トイレ [スペース全/半可] 故障か、<br>ㅤ- トイレ and[AND可] 故障<br></label></li>
+         <li><label>ㅤ⇒全フィールドAND検索<br></label></li>
+         <li><label>・OR検索するとき </label></li>
+         <li><label>ㅤ- トイレ or[OR可]故障  </label></li>
+         <li><label>ㅤ⇒全フィールドOR検索 </label></li>
+	 <li><label>・フィールド指定検索するとき</label></li>
+	 <li><label>ㅤ⇒ "詳細フィールドから検索"のフォーム</label></li>
+	 <li><label>ㅤ⇒ 各フィールドからAND/OR検索</label></li>
+	 * キーワードは部分文字列にマッチ <br>
+	 * [あ and い or う] に対応<br>
+	 * 解釈は[((あ and い) or う)] <br>
+	 * [""],[<],[>]は検索出来ない(エスケープ) </label>
+         </li>
+      </ul>
+</body></html>

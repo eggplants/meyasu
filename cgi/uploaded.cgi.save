@@ -1,0 +1,10 @@
+#!/usr/local/bin/ruby
+require 'cgi'
+require 'mysql2'
+
+#main()
+cgi=CGI.new
+if cgi["image"]==""
+	db=Mysql2::Client.new(:host => 'localhost', :username => 's1811528', :database => "s1811528", :password => 'yaml', :encoding => 'utf8')
+	db.query("insert into images ( img )")
+
